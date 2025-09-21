@@ -1,16 +1,19 @@
-#Класс Book
+# Класс Book
 class Book:
-    #Атрибуты класса
+    # Атрибуты класса
     material = "paper"
     cover = "paperback"
     all_books = []
 
+
 def main():
-    print(f" Material: {Book.material}\n Cover: {Book.cover}\n Books: {Book.all_books}\n")
-    #Экземпляр класса Book
+    # Экземпляр класса Book
     my_book = Book()
     print(" Экземпляр класса Book: \n")
-    print(f" Material: {my_book.material}\n Cover: {my_book.cover}\n Books: {my_book.all_books}")
+    print(
+        f" Material: {my_book.material}\n Cover: \
+            {my_book.cover}\n Books: {my_book.all_books}"
+    )
 
 
 if __name__ == "__main__":
