@@ -1,14 +1,4 @@
-class FractionIO:
-    def read(self, fraction):
-        fraction.first = int(input("Введите числитель: "))
-        fraction.second = int(input("Введите знаменатель: "))
-
-        self.write(fraction)
-
-    def write(self, fraction):
-        print(f"{fraction.first}/{fraction.second}")
-        print(f"Целая часть дроби: {fraction.ipart()}")
-
+from math import gcd as gsd
 
 class FractionPart:
     def __init__(self,first=0,second=1):
@@ -18,27 +8,39 @@ class FractionPart:
         self.__first = int(abs(first))
         self.__second = int(abs(second))
 
+        self.normalize()
+    
+    def read(self):
+        self.__first = int(input("Введите числитель: "))
+        self.__second = int(input("Введите знаменатель: "))
+
+        if self.__second == 0:
+            raise ValueError("Знаменатель не может быть 0")
+
+
+    def display(self):
+        
+        print(f"{self.__first}/{self.__second}")
+        print(f"Целая часть дроби: {self.ipart()}")
+    
+    def normalize(self):
+        g = gsd(self.__first, self.__second)
+        self.__first //= g
+        self.__second //= g 
+
+
     @property
     def first(self):
                 return self.__first
-    @first.setter
-    def first(self, value):
-        self.__first = int(abs(value))
+
 
     @property
     def second(self):
                 return self.__second
-    @second.setter
-    def second(self, value):
-        value = int(abs(value))
-        if value == 0:
-              raise ValueError("Знаменатель не может быть 0")
-        self.__second = value
+
     
     def ipart(self):
         return self.__first // self.__second
 
-           
-frac = FractionPart(5,2)
-io = FractionIO()
-io.read(frac)
+frac = FractionPart(8, 4)
+frac.display()
