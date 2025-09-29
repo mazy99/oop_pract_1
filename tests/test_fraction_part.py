@@ -6,7 +6,8 @@ from tasks.fraction_part import FractionPart
 def test_fraction_io_read(monkeypatch, capsys):
     frac = FractionPart(5, 2)
 
-    monkeypatch.setattr("builtins.input", lambda _: "3/4")
+    inputs = iter(["3", "4"])
+    monkeypatch.setattr("builtins.input", lambda _: next(inputs))
 
     frac.read()
     frac.display()

@@ -1,23 +1,23 @@
-from io import StringIO
-from unittest.mock import patch
-
 import pytest
 
 from tasks.money import Money
 
 
-def test_io_read():
+def test_io_read(monkeypatch, capsys):
     money = Money(5, 20)
 
-    with patch("builtins.input", side_effect=["5", "20"]):
-        with patch("sys.stdout", new_callable=StringIO) as mock_stdout:
-            money.read()
-            money.display()
+    inputs = iter(["5", "20"])
+    monkeypatch.setattr("builtins.input", lambda _: next(inputs))
 
-            output = mock_stdout.getvalue()
-            assert money.rub == 5
-            assert money.kop == 20
-            assert "Количество денег: 5,20 руб." in output
+    money.read()
+    money.display()
+
+    captured = capsys.readouterr()
+    output = captured.out
+
+    assert money.rub == 5
+    assert money.kop == 20
+    assert "Количество денег: 5,20 руб." in output
 
 
 def test_add():
