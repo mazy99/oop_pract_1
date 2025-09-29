@@ -1,24 +1,21 @@
-from io import StringIO
-from unittest.mock import patch
-
 import pytest
 
 from tasks.fraction_part import FractionPart
 
 
-def test_fraction_io_read():
+def test_fraction_io_read(monkeypatch, capsys):
     frac = FractionPart(5, 2)
 
-    with patch("builtins.input", side_effect=["3", "4"]):
-        with patch("sys.stdout", new_callable=StringIO) as mock_stdout:
-            frac.read()
-            frac.display()
+    monkeypatch.setattr("builtins.input", lambda _: "3/4")
 
-            output = mock_stdout.getvalue()
-            assert frac.first == 3
-            assert frac.second == 4
-            assert "3/4" in output
-            assert "Целая часть дроби: 0" in output
+    frac.read()
+    frac.display()
+
+    captured = capsys.readouterr()
+    assert frac.first == 3
+    assert frac.second == 4
+    assert "3/4" in captured.out
+    assert "Целая часть дроби: 0" in captured.out
 
 
 def test_fraction_part_initialization():
