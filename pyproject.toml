@@ -26,7 +26,6 @@ dependencies = [
     "pluggy==1.6.0",
     "pre_commit==4.3.0",
     "Pygments==2.19.2",
-    "pytest==8.4.2",
     "PyYAML==6.0.2",
     "tomli==2.2.1",
     "typing_extensions==4.15.0",
@@ -36,11 +35,15 @@ dependencies = [
 
 [project.optional-dependencies]
 dev = [
-    "black>=23.0.0",
-    "flake8-pyproject",
-    "flake8>=6.0.0",
-    "isort>=5.12.0",
-    "pre-commit>=3.0.0",
+    "flake8==7.3.0",
+    "flake8-pyproject==1.2.3",
+    "mccabe==0.7.0",
+    "pycodestyle==2.14.0",
+    "pyflakes==3.4.0",
+    "pytest==8.4.2",
+    "pytest-env==1.1.5",
+    "uv==0.8.23",
+    "-e git+https://github.com/mazy99/oop_pract_1.git@02fb61d2f2b59381a8de9ed053ef38b381f39e30#egg=oop_pract_1"
 ]
 
 [tool.black]
@@ -80,7 +83,9 @@ warn_unused_configs = true
 disallow_untyped_defs = true
 
 [tool.pytest.ini_options]
-testpaths = ["tests"]
+testpaths = ["tests","tasks"]
 python_files = "test_*.py"
 python_classes = "Test*"
 python_functions = "test_*"
+addopts = "--rootdir=. --pyargs"
+pythonpath = ["."]

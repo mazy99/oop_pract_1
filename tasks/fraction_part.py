@@ -37,11 +37,3 @@ class FractionPart:
 
     def ipart(self):
         return self.__first // self.__second
-
-
-if __name__ == "__main__":
-    frac = FractionPart(5, 2)
-    frac.display()
-
-    frac.read()
-    frac.display()
