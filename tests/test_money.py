@@ -1,9 +1,12 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+
+
 import pytest
+from money_package.money import Money
 
-from tasks.money import Money
 
-
-def test_io_read(monkeypatch, capsys):
+def test_io_read(monkeypatch, capsys) -> None:
     money = Money(5, 20)
 
     inputs = iter(["5", "20"])
@@ -20,7 +23,7 @@ def test_io_read(monkeypatch, capsys):
     assert "Количество денег: 5,20 руб." in output
 
 
-def test_add():
+def test_add() -> None:
     m1 = Money(5, 20)
     m2 = Money(10, 30)
 
@@ -31,7 +34,7 @@ def test_add():
     assert result.kop == 50
 
 
-def test_sub():
+def test_sub() -> None:
     m1 = Money(10, 30)
     m2 = Money(5, 20)
 
@@ -60,7 +63,7 @@ def test_sub():
     assert result.kop == 10
 
 
-def test_div():
+def test_div() -> None:
     m1 = Money(20, 60)
     m2 = Money(10, 30)
 
@@ -96,7 +99,7 @@ def test_div():
         result = m9.div(m10)
 
 
-def test_div_num():
+def test_div_num() -> None:
     m1 = Money(20, 60)
     m2 = 2
 
@@ -122,7 +125,7 @@ def test_div_num():
         result = m5.div_num(m6)
 
 
-def test_mul_num():
+def test_mul_num() -> None:
     m1 = Money(20, 60)
     m2 = 2
 
@@ -142,42 +145,42 @@ def test_mul_num():
     assert result.kop == 0
 
 
-def test_eq():
+def test_eq() -> None:
     m1 = Money(20, 60)
     m2 = Money(20, 60)
 
     assert m1.eq(m2)
 
 
-def test_lt():
+def test_lt() -> None:
     m1 = Money(20, 60)
     m2 = Money(10, 30)
 
     assert m2.lt(m1)
 
 
-def test_gt():
+def test_gt() -> None:
     m1 = Money(20, 60)
     m2 = Money(10, 30)
 
     assert m1.gt(m2)
 
 
-def test_le():
+def test_le() -> None:
     m1 = Money(20, 60)
     m2 = Money(10, 30)
 
     assert m2.le(m1)
 
 
-def test_ge():
+def test_ge() -> None:
     m1 = Money(20, 60)
     m2 = Money(10, 30)
 
     assert m1.ge(m2)
 
 
-def test_ne():
+def test_ne() -> None:
     m1 = Money(20, 60)
     m2 = Money(10, 30)
 

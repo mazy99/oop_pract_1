@@ -4,7 +4,12 @@
         {
             "path": "",
             "envManager": "ms-python.python:venv",
-            "packageManager": "ms-python.python:pip"
+            "packageManager": "ms-python.python:pip",
+            "extraPaths": ["tasks","examples"]
         }
+    ],
+    "python.analysis.extraPaths": [
+        "./tests/test_",
+        "./tasks"
     ]
 }

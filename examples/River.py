@@ -1,17 +1,21 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+
+
 class River:
     all_rivers = []
 
-    def __init__(self, name, length):
+    def __init__(self, name: str, length: int) -> None:
         self.name = name
         self.length = length
         River.all_rivers.append(self)
 
     # Метод
-    def get_info(self):
+    def get_info(self) -> str:
         return f"Длина {self.name} равна {self.length} км"
 
 
-def main():
+def main() -> None:
     volga = River("Волга", 3530)
     seine = River("Сена", 776)
     nile = River("Нил", 6852)

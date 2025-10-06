@@ -1,5 +1,11 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+
+from __future__ import annotations
+
+
 class Rational:
-    def __init__(self, a=0, b=1):
+    def __init__(self, a: int = 0, b: int = 1) -> None:
         a = int(a)
         b = int(b)
 
@@ -11,8 +17,8 @@ class Rational:
 
         self.__reduce()
 
-    def __reduce(self):
-        def gcd(a, b):
+    def __reduce(self) -> None:
+        def gcd(a: int, b: int) -> int:
             if a == 0:
                 return b
             elif b == 0:
@@ -27,14 +33,14 @@ class Rational:
         self.__denominator //= c
 
     @property
-    def numerator(self):
+    def numerator(self) -> int:
         return self.__numerator
 
     @property
-    def denominator(self):
+    def denominator(self) -> int:
         return self.__denominator
 
-    def read(self, prompt=None):
+    def read(self, prompt: str = None) -> None:
         line = input() if prompt is None else input(prompt)
         parts = list(map(int, line.split("/", maxsplit=1)))
 
@@ -45,52 +51,52 @@ class Rational:
         self.__denominator = abs(parts[1])
         self.__reduce()
 
-    def display(self):
+    def display(self) -> None:
         print(f"{self.__numerator}/{self.__denominator}")
 
-    def add(self, rhs):
+    def add(self, rhs: Rational) -> Rational | bool: 
         if isinstance(rhs, Rational):
-            a = self.numerator * rhs.denominator + self.denominator * rhs.numerator
+            a = self.numerator * rhs.denominator + self.denominator * rhs.numerator  # noqa: E501
             b = self.denominator * rhs.denominator
             return Rational(a, b)
         return False
 
-    def sub(self, rhs):
+    def sub(self, rhs: Rational) -> Rational | bool:  
         if isinstance(rhs, Rational):
-            a = self.numerator * rhs.denominator - self.denominator * rhs.numerator
+            a = self.numerator * rhs.denominator - self.denominator * rhs.numerator  # noqa: E501
             b = self.denominator * rhs.denominator
             return Rational(a, b)
         return False
 
-    def mul(self, rhs):
+    def mul(self, rhs: Rational) -> Rational | bool:
         if isinstance(rhs, Rational):
             a = self.numerator * rhs.numerator
             b = self.denominator * rhs.denominator
             return Rational(a, b)
         return False
 
-    def div(self, rhs):
+    def div(self, rhs: Rational) -> Rational | bool:
         if isinstance(rhs, Rational):
             a = self.numerator * rhs.denominator
             b = self.denominator * rhs.numerator
             return Rational(a, b)
         return False
 
-    def equals(self, rhs):
+    def equals(self, rhs: Rational) -> bool:  
         if isinstance(rhs, Rational):
             return (
-                self.numerator == rhs.numerator and self.denominator == rhs.denominator
+                self.numerator == rhs.numerator and self.denominator == rhs.denominator # noqa: E501
             )
         return False
 
-    def greater(self, rhs):
+    def greater(self, rhs: Rational) -> bool:
         if isinstance(rhs, Rational):
             v1 = self.numerator / self.denominator
             v2 = rhs.numerator / rhs.denominator
             return v1 > v2
         return False
 
-    def less(self, rhs):
+    def less(self, rhs: Rational) -> bool:
         if isinstance(rhs, Rational):
             v1 = self.numerator / self.denominator
             v2 = rhs.numerator / rhs.denominator

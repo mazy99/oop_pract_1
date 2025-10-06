@@ -1,4 +1,8 @@
-from money import Money
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+
+
+from money_package.money import Money
 
 if __name__ == "__main__":
     money_1 = Money(1, 2)
